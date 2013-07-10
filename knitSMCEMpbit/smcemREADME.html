@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Notes to the SMCEMMPM demo</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<pre><code>## Demo code for Sequential Monte Carlo EM for multivariate probit models (SMCEMMPM)
+#
+## Giusi Moffa and Jack Kuipers
+## University of Regensburg
+#
+## Last modified: July 4, 2013
+#
+## Disclaimer: The code in this archive is not guaranteed to be optimised or free of bugs.
+##        Please report any issues to the authors (giusi.moffa@ur.de, jack.kuipers@ur.de).
+</code></pre>
+
+<hr/>
+
+<h4>Notes to the SMCEMMPM demo</h4>
+
+<p>The supplement <code>kntiSMCEMpbit.pdf</code> to the SMCEMMPM article contains detailed procedures, including the code, to fit a probit model to the two datasets considered in the paper.</p>
+
+<ul>
+<li><p>Multivariate Probit model fit of the six cities dataset, with covariance matrix in correlation form, for a more direct comparison to the existing literature.<br/>
+The six cities analysis can be reproduced by running the file <code>sixCseqDemo.R</code> in the <code>smcPbitDemo</code> folder.</p></li>
+<li><p>Multivariate Probit model of a simulated dataset, with response variable of dimension 8.<br/>
+The simulated data analysis can be reproduced by running the file <code>smcPbitDemo.R</code> in the <code>smcPbitDemo</code> folder.</p></li>
+</ul>
+
+<h3>Files in the archive, <code>smcPbitDemo</code> folder</h3>
+
+<hr/>
+
+<hr/>
+
+<hr/>
+
+<h4>Demo data files:</h4>
+
+<hr/>
+
+<p><strong>simPbit8Data1k.RData</strong> Contains simulated data from a multivariate probit model with response variable of dimension 8</p>
+
+<p><strong>sixcities.RData</strong> Contains the six cities dataset</p>
+
+<p><strong>smcemPbitDemo11062013.RData</strong> Contains image file with results from the analysis of the data in <code>simPbit8Data1k.RData</code> (as obtained by <code>smcemPbitDemo.R</code>)</p>
+
+<p><strong>smcSixCdemo11062013.RData</strong> Contains image file with results from the analysis of the data in <code>sixcities.RData</code> (as obtained by <code>sixCseqDemo.R</code>)</p>
+
+<p><strong>samples</strong> Folder needed to save results from one iteration of the SMC EM to the next. An empty folder with this name needs to be present in the working folder before starting the analysis</p>
+
+<hr/>
+
+<hr/>
+
+<h4>Demo code files:</h4>
+
+<hr/>
+
+<p><strong>buildsixcities.R</strong> Formats the six cities data as needed for the analysis</p>
+
+<p><strong>evallike.R</strong> Evaluates the log-likelihood of given regression coefficients and covariance matrix </p>
+
+<p><strong>fisher.R</strong> Evaluates fisher information of multivariate probit models according to Louis Formula</p>
+
+<p><strong>Mstep.R</strong> Performs the M step of the SMCEM procedure for multivariate probit models</p>
+
+<p><strong>obseval.R</strong> Performs the initial (sampling of multivariate truncated Gaussian from scratch) E step of the SMCEM procedure for multivariate probit models</p>
+
+<p><strong>PbitEMloop.R</strong> Performs one SMC EM step of the SMCEM procedure for multivariate probit models, including a call to <code>smcEM</code> and to <code>Mstep</code></p>
+
+<p><strong>PbitEMstart.R</strong> Performs the first step (sampling from scratch) of the SMC EM procedure for multivariate probit models</p>
+
+<p><strong>PbitEMstep.R</strong> Performs the EM step for multivariate probit models, with sampling from scratch at each iterations (only used without the sequential update of the parameters) </p>
+
+<p><strong>resample.R</strong> Performs resampling for the SMC sampler</p>
+
+<p><strong>siginit.R</strong> Evaluates an initial pairwise estimate of the covariance matrix</p>
+
+<p><strong>simProbit.R</strong> Simulates data from a multivariate probit models</p>
+
+<p><strong>sixCseqDemo.R</strong> Performs analysis of six cities data sixcities.RData&#39;</p>
+
+<p><strong>smcEM.R</strong> Performs one step of the sequential SMC EM update procedure for multivariate probit models</p>
+
+<p><strong>smcemPbitDemo.R</strong> Performs analysis of simulated data simPbit8Data1k.RData&#39;</p>
+
+<hr/>
+
+<hr/>
+
+<h4>Knitting files, <code>knitSMCEMpbit</code> folder</h4>
+
+<hr/>
+
+<p><strong>knit6data.Rnw</strong> Source file (as a child of <code>knitSMCEMpbit.Rnw</code>) for knitting the six cities analysis example</p>
+
+<p><strong>knitSimPbit.Rnw</strong> Source file (as a child of <code>knitSMCEMpbit.Rnw</code>) for knitting the simulated data analysis example</p>
+
+<p><strong>knitSMCEMpbit.Rnw</strong> Knits the whole supplement file <code>knitSMCEMpbit.pdf</code></p>
+
+<p><strong>knitSMCEMpbit.pdf</strong> Supplement to SMCEMMPM article. It contains detailed procedures, including the code, to fit a probit model to the two datasets considered in the paper.</p>
+
+<hr/>
+
+</body>
+
+</html>
+

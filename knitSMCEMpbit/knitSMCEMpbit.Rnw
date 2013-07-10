@@ -1,0 +1,62 @@
+%%------------------------------------------------------------------------------------------%%
+%% Demo code for Sequential Monte Carlo EM for multivariate probit models (SMCEMMPM)
+%
+%% Giusi Moffa and Jack Kuipers
+%% University of Regensburg
+%
+%% Last modified: July 4, 2013
+%
+% Disclaimer: The code in this archive is not guaranteed to be optimised or free of bugs.
+%        Please report any issues to the authors (giusi.moffa@ur.de, jack.kuipers@ur.de).
+%%------------------------------------------------------------------------------------------%%
+
+% setwd("knitfolder")
+% library(knitr)
+% knit('knitSMCEMpbit.Rnw')
+% knit2pdf('knitSMCEMpbit.Rnw')
+
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{color}
+\usepackage{natbib}
+
+\begin{document}
+%\setkeys{Gin}{width=.9\textwidth}
+
+\title{Reproducible analysis via SMCEM for multivariate probit models \\
+{\small Supplement to Sequential Monte Carlo EM for multivariate probit models}}
+\author{Giusi Moffa and Jack Kuipers}
+\date{}
+
+\maketitle
+
+%%%----------------------------------------------------------%%%
+<<setup, include=FALSE, cache=FALSE>>=
+# set global chunk options
+opts_chunk$set(comment="",tidy=TRUE, message=FALSE, echo=TRUE,cache=TRUE, fig.path='figure/minimal-', fig.align='center', fig.show='hold')
+tidy.opts=list(keep.blank.line=FALSE)
+options(replace.assign=TRUE, width.cutoff=60)
+dep_prev()
+# ## \\Sexpr{opts_chunk$set(message=FALSE)}}
+@
+
+\subsection*{Software}
+This document is compiled with \texttt{knitr\_1.2} under R version \texttt{3.0.0}.
+The complete analysis is also run under R version \texttt{3.0.0}, with \texttt{mvtnorm} package for multivariate normal and t distributions.
+
+%%%--------- Input six cities data analysis file----------%%%
+<<cities-analysis, child='knit6data.Rnw', eval=TRUE>>=
+@
+%%%----------------------------------------------------------%%%
+
+\clearpage
+
+%%%--------- Input simulated data analysis file----------%%%
+<<simPbit-analysis, child='knitSimPbit.Rnw', eval=TRUE>>=
+@
+%%%----------------------------------------------------------%%%
+
+%\bibliographystyle{plainnat}
+%\bibliography{articles}
+\end{document}
